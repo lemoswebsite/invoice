@@ -1,11 +1,12 @@
 {
+  "defaultLanguage": "en",
   "company": {
     "name": "Orega",
     "logo": "logo.png",
     "address": {
-      "line1": "Company Address Line 1",
-      "line2": "City / State",
-      "country": ""
+      "line1": "Santo Domingo Este",
+      "line2": "Santo Domingo",
+      "country": "Rep. Dominicana"
     },
     "contact": {
       "email": "hola@orega.com.do",
