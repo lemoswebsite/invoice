@@ -23,7 +23,10 @@
       "unitPrice": "Birim Fiyat",
       "remove": "Sil",
       "pricing": "Fiyatlandırma",
-      "taxRate": "KDV Oranı (%)",
+      "taxes": "Vergiler",
+      "addTax": "+ Vergi Ekle",
+      "taxName": "Vergi Adı",
+      "taxRate": "Vergi Oranı (%)",
       "discountType": "İndirim Tipi",
       "discount": "İndirim",
       "percent": "Yüzde (%)",
@@ -34,7 +37,8 @@
       "import": "İçe Aktar",
       "print": "Yazdır",
       "downloadPdf": "PDF İndir",
-      "language": "Dil"
+      "language": "Dil",
+      "template": "Şablon"
     },
     "invoice": {
       "validUntil": "İşbu teklif, {date} tarihine kadar geçerlidir",
@@ -123,6 +127,9 @@
       "unitPrice": "Unit Price",
       "remove": "Remove",
       "pricing": "Pricing",
+      "taxes": "Taxes",
+      "addTax": "+ Add Tax",
+      "taxName": "Tax Name",
       "taxRate": "Tax Rate (%)",
       "discountType": "Discount Type",
       "discount": "Discount",
@@ -134,7 +141,8 @@
       "import": "Import",
       "print": "Print",
       "downloadPdf": "Download PDF",
-      "language": "Language"
+      "language": "Language",
+      "template": "Template"
     },
     "invoice": {
       "validUntil": "This quote is valid until {date}",
@@ -223,7 +231,10 @@
       "unitPrice": "Einzelpreis",
       "remove": "Entfernen",
       "pricing": "Preisgestaltung",
-      "taxRate": "MwSt-Satz (%)",
+      "taxes": "Steuern",
+      "addTax": "+ Steuer hinzufügen",
+      "taxName": "Steuername",
+      "taxRate": "Steuersatz (%)",
       "discountType": "Rabatttyp",
       "discount": "Rabatt",
       "percent": "Prozent (%)",
@@ -234,7 +245,8 @@
       "import": "Importieren",
       "print": "Drucken",
       "downloadPdf": "PDF herunterladen",
-      "language": "Sprache"
+      "language": "Sprache",
+      "template": "Vorlage"
     },
     "invoice": {
       "validUntil": "Dieses Angebot ist gültig bis {date}",
@@ -323,7 +335,10 @@
       "unitPrice": "Prezzo Unitario",
       "remove": "Rimuovi",
       "pricing": "Prezzi",
-      "taxRate": "Aliquota IVA (%)",
+      "taxes": "Imposte",
+      "addTax": "+ Aggiungi Imposta",
+      "taxName": "Nome Imposta",
+      "taxRate": "Aliquota (%)",
       "discountType": "Tipo di Sconto",
       "discount": "Sconto",
       "percent": "Percentuale (%)",
@@ -334,7 +349,8 @@
       "import": "Importa",
       "print": "Stampa",
       "downloadPdf": "Scarica PDF",
-      "language": "Lingua"
+      "language": "Lingua",
+      "template": "Modello"
     },
     "invoice": {
       "validUntil": "Questo preventivo è valido fino al {date}",
@@ -423,6 +439,9 @@
       "unitPrice": "Единична Цена",
       "remove": "Премахни",
       "pricing": "Ценообразуване",
+      "taxes": "Данъци",
+      "addTax": "+ Добави Данък",
+      "taxName": "Име на Данъка",
       "taxRate": "ДДС (%)",
       "discountType": "Тип Отстъпка",
       "discount": "Отстъпка",
@@ -434,7 +453,8 @@
       "import": "Импортирай",
       "print": "Отпечатай",
       "downloadPdf": "Изтегли PDF",
-      "language": "Език"
+      "language": "Език",
+      "template": "Шаблон"
     },
     "invoice": {
       "validUntil": "Тази оферта е валидна до {date}",
@@ -502,7 +522,7 @@
   "ru": {
     "app": {
       "title": "InvioLite - Профессиональный Генератор Счетов",
-      "description": "InvioLite - Профессиональный генератор счетов, предложений и проформ. Мощное управление счетами с экспортом в PDF и функциями резервного копирования данных."
+      "description": "InvioLite - Профессиональный генератор счетов, предложений и проформ. Мощное управление счетами с экспортом в PDF и функции резервного копирования данных."
     },
     "ui": {
       "documentDetails": "Детали Документа",
@@ -523,7 +543,10 @@
       "unitPrice": "Цена за Единицу",
       "remove": "Удалить",
       "pricing": "Ценообразование",
-      "taxRate": "НДС (%)",
+      "taxes": "Налоги",
+      "addTax": "+ Добавить Налог",
+      "taxName": "Название Налога",
+      "taxRate": "Ставка Налога (%)",
       "discountType": "Тип Скидки",
       "discount": "Скидка",
       "percent": "Процент (%)",
@@ -534,7 +557,8 @@
       "import": "Импорт",
       "print": "Печать",
       "downloadPdf": "Скачать PDF",
-      "language": "Язык"
+      "language": "Язык",
+      "template": "Шаблон"
     },
     "invoice": {
       "validUntil": "Это предложение действительно до {date}",
@@ -598,6 +622,317 @@
       "downloadPdf": "Скачать как PDF",
       "selectFile": "Выберите файл"
     }
+  },
+  "pt": {
+    "app": {
+      "title": "InvioLite - Gerador de Faturas Profissional",
+      "description": "InvioLite - Gerador profissional de faturas, orçamentos e faturas pró-forma. Gestão poderosa de faturas com exportação PDF e backup de dados."
+    },
+    "ui": {
+      "documentDetails": "Detalhes do Documento",
+      "documentType": "Tipo de Documento",
+      "currency": "Moeda",
+      "number": "Número",
+      "issueDate": "Data de Emissão",
+      "expiryDate": "Data de Vencimento",
+      "customer": "Para",
+      "companyName": "Empresa / Nome",
+      "address": "Endereço",
+      "phone": "Telefone",
+      "items": "Serviços / Produtos",
+      "addItem": "+ Adicionar Item",
+      "item": "Item",
+      "description": "Descrição",
+      "quantity": "Quantidade",
+      "unitPrice": "Preço Unitário",
+      "remove": "Remover",
+      "pricing": "Preços",
+      "taxes": "Impostos",
+      "addTax": "+ Adicionar Imposto",
+      "taxName": "Nome do Imposto",
+      "taxRate": "Taxa de Imposto (%)",
+      "discountType": "Tipo de Desconto",
+      "discount": "Desconto",
+      "percent": "Percentagem (%)",
+      "fixed": "Valor Fixo",
+      "notes": "Notas",
+      "save": "Guardar",
+      "export": "Exportar",
+      "import": "Importar",
+      "print": "Imprimir",
+      "downloadPdf": "Descarregar PDF",
+      "language": "Idioma",
+      "template": "Modelo"
+    },
+    "invoice": {
+      "validUntil": "Este orçamento é válido até {date}",
+      "to": "PARA",
+      "serviceProduct": "■ DESCRIÇÃO DE SERVIÇOS/PRODUTOS",
+      "listPrice": "PREÇO DE LISTA",
+      "quantity": "QTD",
+      "total": "TOTAL",
+      "subtotal": "SUBTOTAL",
+      "discount": "DESCONTO",
+      "tax": "IVA ({rate}%)",
+      "grandTotal": "TOTAL",
+      "defaultDescription": "Descrição do Serviço / Produto",
+      "defaultCustomer": "Empresa Cliente Lda.",
+      "defaultAddress": "Rua Exemplo Centro de Negócios Nº1, Cidade",
+      "defaultPhone": "+351 555 000 0000"
+    },
+    "documentTypes": {
+      "FATURA": "Fatura",
+      "PROFORMA FATURA": "Fatura Pró-forma",
+      "TEKLİF": "Orçamento"
+    },
+    "currencies": {
+      "TRY": "Lira Turca (₺)",
+      "USD": "Dólar Americano ($)",
+      "EUR": "Euro (€)",
+      "GBP": "Libra Esterlina (£)"
+    },
+    "placeholders": {
+      "customerName": "Empresa Cliente Lda.",
+      "customerAddress": "Rua Exemplo Centro de Negócios Nº1, Cidade",
+      "customerPhone": "+351 555 000 0000",
+      "notes": "Termos de pagamento, detalhes de entrega, etc."
+    },
+    "notifications": {
+      "itemAdded": "Item adicionado",
+      "itemRemoved": "Item removido",
+      "minItemsRequired": "Pelo menos um item é necessário",
+      "dataSaved": "Dados guardados",
+      "dataExported": "Dados exportados",
+      "dataImported": "Dados importados",
+      "pdfDownloaded": "PDF descarregado com sucesso",
+      "pdfError": "Erro ao gerar PDF. Por favor use a função de impressão.",
+      "saveError": "Erro ao guardar",
+      "exportError": "Erro ao exportar",
+      "importError": "Formato de ficheiro inválido",
+      "previewError": "Erro ao atualizar pré-visualização",
+      "pdfLoading": "A carregar biblioteca de PDF..."
+    },
+    "aria": {
+      "selectDocumentType": "Selecione o tipo de documento",
+      "selectCurrency": "Selecione a moeda",
+      "invoiceNumber": "Número da fatura",
+      "issueDate": "Data de emissão",
+      "expiryDate": "Data de vencimento",
+      "addItem": "Adicionar novo item",
+      "saveInvoice": "Guardar fatura",
+      "exportData": "Exportar dados",
+      "importData": "Importar dados",
+      "printInvoice": "Imprimir fatura",
+      "downloadPdf": "Descarregar como PDF",
+      "selectFile": "Selecionar ficheiro"
+    }
+  },
+  "fr": {
+    "app": {
+      "title": "InvioLite - Générateur de Factures Professionnel",
+      "description": "InvioLite - Générateur professionnel de factures, devis et factures proforma. Gestion puissante des factures avec exportation PDF et sauvegarde des données."
+    },
+    "ui": {
+      "documentDetails": "Détails du Document",
+      "documentType": "Type de Document",
+      "currency": "Devise",
+      "number": "Numéro",
+      "issueDate": "Date d'Émission",
+      "expiryDate": "Date d'Échéance",
+      "customer": "À",
+      "companyName": "Société / Nom",
+      "address": "Adresse",
+      "phone": "Téléphone",
+      "items": "Services / Produits",
+      "addItem": "+ Ajouter un Article",
+      "item": "Article",
+      "description": "Description",
+      "quantity": "Quantité",
+      "unitPrice": "Prix Unitaire",
+      "remove": "Supprimer",
+      "pricing": "Tarification",
+      "taxes": "Taxes",
+      "addTax": "+ Ajouter une Taxe",
+      "taxName": "Nom de la Taxe",
+      "taxRate": "Taux de Taxe (%)",
+      "discountType": "Type de Remise",
+      "discount": "Remise",
+      "percent": "Pourcentage (%)",
+      "fixed": "Montant Fixe",
+      "notes": "Notes",
+      "save": "Enregistrer",
+      "export": "Exporter",
+      "import": "Importer",
+      "print": "Imprimer",
+      "downloadPdf": "Télécharger PDF",
+      "language": "Langue",
+      "template": "Modèle"
+    },
+    "invoice": {
+      "validUntil": "Ce devis est valable jusqu'au {date}",
+      "to": "À",
+      "serviceProduct": "■ DESCRIPTIONS DES SERVICES/PRODUITS",
+      "listPrice": "PRIX CATALOGUE",
+      "quantity": "QTÉ",
+      "total": "TOTAL",
+      "subtotal": "SOUS-TOTAL",
+      "discount": "REMISE",
+      "tax": "TVA ({rate}%)",
+      "grandTotal": "TOTAL",
+      "defaultDescription": "Description du Service / Produit",
+      "defaultCustomer": "Société Client SARL",
+      "defaultAddress": "Rue Exemple Centre d'Affaires N°1, Ville",
+      "defaultPhone": "+33 1 55 00 00 00"
+    },
+    "documentTypes": {
+      "FATURA": "Facture",
+      "PROFORMA FATURA": "Facture Proforma",
+      "TEKLİF": "Devis"
+    },
+    "currencies": {
+      "TRY": "Livre Turque (₺)",
+      "USD": "Dollar Américain ($)",
+      "EUR": "Euro (€)",
+      "GBP": "Livre Sterling (£)"
+    },
+    "placeholders": {
+      "customerName": "Société Client SARL",
+      "customerAddress": "Rue Exemple Centre d'Affaires N°1, Ville",
+      "customerPhone": "+33 1 55 00 00 00",
+      "notes": "Conditions de paiement, détails de livraison, etc."
+    },
+    "notifications": {
+      "itemAdded": "Article ajouté",
+      "itemRemoved": "Article supprimé",
+      "minItemsRequired": "Au moins un article est requis",
+      "dataSaved": "Données enregistrées",
+      "dataExported": "Données exportées",
+      "dataImported": "Données importées",
+      "pdfDownloaded": "PDF téléchargé avec succès",
+      "pdfError": "Erreur lors de la génération du PDF. Veuillez utiliser la fonction d'impression.",
+      "saveError": "Erreur d'enregistrement",
+      "exportError": "Erreur d'exportation",
+      "importError": "Format de fichier invalide",
+      "previewError": "Erreur lors de la mise à jour de l'aperçu",
+      "pdfLoading": "Chargement de la bibliothèque PDF..."
+    },
+    "aria": {
+      "selectDocumentType": "Sélectionner le type de document",
+      "selectCurrency": "Sélectionner la devise",
+      "invoiceNumber": "Numéro de facture",
+      "issueDate": "Date d'émission",
+      "expiryDate": "Date d'échéance",
+      "addItem": "Ajouter un nouvel article",
+      "saveInvoice": "Enregistrer la facture",
+      "exportData": "Exporter les données",
+      "importData": "Importer les données",
+      "printInvoice": "Imprimer la facture",
+      "downloadPdf": "Télécharger en PDF",
+      "selectFile": "Sélectionner un fichier"
+    }
+  },
+  "es": {
+    "app": {
+      "title": "InvioLite - Generador de Facturas Profesional",
+      "description": "InvioLite - Generador profesional de facturas, cotizaciones y facturas proforma. Gestión potente de facturas con exportación PDF y respaldo de datos."
+    },
+    "ui": {
+      "documentDetails": "Detalles del Documento",
+      "documentType": "Tipo de Documento",
+      "currency": "Moneda",
+      "number": "Número",
+      "issueDate": "Fecha de Emisión",
+      "expiryDate": "Fecha de Vencimiento",
+      "customer": "Para",
+      "companyName": "Empresa / Nombre",
+      "address": "Dirección",
+      "phone": "Teléfono",
+      "items": "Servicios / Productos",
+      "addItem": "+ Agregar Artículo",
+      "item": "Artículo",
+      "description": "Descripción",
+      "quantity": "Cantidad",
+      "unitPrice": "Precio Unitario",
+      "remove": "Eliminar",
+      "pricing": "Precios",
+      "taxes": "Impuestos",
+      "addTax": "+ Agregar Impuesto",
+      "taxName": "Nombre del Impuesto",
+      "taxRate": "Tasa de Impuesto (%)",
+      "discountType": "Tipo de Descuento",
+      "discount": "Descuento",
+      "percent": "Porcentaje (%)",
+      "fixed": "Cantidad Fija",
+      "notes": "Notas",
+      "save": "Guardar",
+      "export": "Exportar",
+      "import": "Importar",
+      "print": "Imprimir",
+      "downloadPdf": "Descargar PDF",
+      "language": "Idioma",
+      "template": "Plantilla"
+    },
+    "invoice": {
+      "validUntil": "Esta cotización es válida hasta el {date}",
+      "to": "PARA",
+      "serviceProduct": "■ DESCRIPCIONES DE SERVICIOS/PRODUCTOS",
+      "listPrice": "PRECIO DE LISTA",
+      "quantity": "CANT",
+      "total": "TOTAL",
+      "subtotal": "SUBTOTAL",
+      "discount": "DESCUENTO",
+      "tax": "IVA ({rate}%)",
+      "grandTotal": "TOTAL",
+      "defaultDescription": "Descripción del Servicio / Producto",
+      "defaultCustomer": "Empresa Cliente S.A.",
+      "defaultAddress": "Calle Ejemplo Centro de Negocios N°1, Ciudad",
+      "defaultPhone": "+34 555 000 0000"
+    },
+    "documentTypes": {
+      "FATURA": "Factura",
+      "PROFORMA FATURA": "Factura Proforma",
+      "TEKLİF": "Cotización"
+    },
+    "currencies": {
+      "TRY": "Lira Turca (₺)",
+      "USD": "Dólar Estadounidense ($)",
+      "EUR": "Euro (€)",
+      "GBP": "Libra Esterlina (£)"
+    },
+    "placeholders": {
+      "customerName": "Empresa Cliente S.A.",
+      "customerAddress": "Calle Ejemplo Centro de Negocios N°1, Ciudad",
+      "customerPhone": "+34 555 000 0000",
+      "notes": "Condiciones de pago, detalles de entrega, etc."
+    },
+    "notifications": {
+      "itemAdded": "Artículo agregado",
+      "itemRemoved": "Artículo eliminado",
+      "minItemsRequired": "Se requiere al menos un artículo",
+      "dataSaved": "Datos guardados",
+      "dataExported": "Datos exportados",
+      "dataImported": "Datos importados",
+      "pdfDownloaded": "PDF descargado exitosamente",
+      "pdfError": "Error al generar el PDF. Por favor, use la función de impresión.",
+      "saveError": "Error al guardar",
+      "exportError": "Error al exportar",
+      "importError": "Formato de archivo inválido",
+      "previewError": "Error al actualizar la vista previa",
+      "pdfLoading": "Cargando biblioteca PDF..."
+    },
+    "aria": {
+      "selectDocumentType": "Seleccionar tipo de documento",
+      "selectCurrency": "Seleccionar moneda",
+      "invoiceNumber": "Número de factura",
+      "issueDate": "Fecha de emisión",
+      "expiryDate": "Fecha de vencimiento",
+      "addItem": "Agregar nuevo artículo",
+      "saveInvoice": "Guardar factura",
+      "exportData": "Exportar datos",
+      "importData": "Importar datos",
+      "printInvoice": "Imprimir factura",
+      "downloadPdf": "Descargar como PDF",
+      "selectFile": "Seleccionar archivo"
+    }
   }
 }
-
