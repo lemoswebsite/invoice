@@ -1,6 +1,6 @@
 {
   "company": {
-    "name": "InvioLite",
+    "name": "Orega",
     "logo": "logo.png",
     "address": {
       "line1": "Company Address Line 1",
@@ -8,9 +8,9 @@
       "country": ""
     },
     "contact": {
-      "email": "info@imgera.com",
-      "phone": "+1 555 000 0000",
-      "website": "imgera.com"
+      "email": "hola@orega.com.do",
+      "phone": "+1 809 989 0421",
+      "website": "orega.com.do"
     }
   },
   "invoice": {
