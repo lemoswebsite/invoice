@@ -16,8 +16,8 @@
   },
   "invoice": {
     "defaultNumber": "INV-001",
-    "defaultTaxRate": 20,
-    "currency": "TRY",
+    "defaultTaxRate": 18,
+    "currency": "USD",
     "dateFormat": "DD.MM.YYYY"
   },
   "branding": {
