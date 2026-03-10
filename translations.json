@@ -847,7 +847,7 @@
       "companyName": "Empresa / Nombre",
       "address": "Dirección",
       "phone": "Teléfono",
-      "items": "Servicios / Productos",
+      "items": "Productos",
       "addItem": "+ Agregar Artículo",
       "item": "Artículo",
       "description": "Descripción",
@@ -875,7 +875,7 @@
     "invoice": {
       "validUntil": "Esta cotización es válida hasta el {date}",
       "to": "PARA",
-      "serviceProduct": "■ DESCRIPCIONES DE SERVICIOS/PRODUCTOS",
+      "serviceProduct": "■ DESCRIPCIONES DEL PRODUCTOS",
       "listPrice": "PRECIO DE LISTA",
       "quantity": "CANT",
       "total": "TOTAL",
