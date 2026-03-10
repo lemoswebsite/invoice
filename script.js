@@ -14,7 +14,7 @@ class InvoiceGenerator {
     constructor() {
         this.items = [];
         this.settings = {
-            taxRate: 20,
+            taxes: [{ id: Date.now(), name: 'KDV', rate: 20 }],
             discount: 0,
             discountType: 'percent' // 'percent' or 'fixed'
         };
@@ -32,14 +32,20 @@ class InvoiceGenerator {
         
         // Wait for translations to load
         if (window.translationManager) {
-            this.translationsReady = await window.translationManager.loadTranslations();
+            this.translationsReady = await window.translationManager.loadTranslations(this.config?.defaultLanguage);
             // Update HTML lang attribute based on loaded language
             document.documentElement.lang = window.translationManager.getCurrentLanguage();
             this.applyTranslations();
         }
         
-        this.loadFromStorage();
         this.setupDOM();
+        this.loadFromStorage();
+        
+        // Initialize template select
+        if (this.elements.templateSelect && this.config?.template?.name) {
+            this.elements.templateSelect.value = this.config.template.name;
+        }
+
         this.setupEventListeners();
         this.initializeDates();
         this.applyCompanyConfig();
@@ -81,7 +87,9 @@ class InvoiceGenerator {
                     
                     // Re-setup DOM elements after template change
                     this.setupDOM();
-                    this.setupEventListeners();
+                    // Update preview with current data
+                    this.applyCompanyConfig(); // Re-apply company info (logo etc) which might be in preview
+                    this.updatePreview();
                 }
             } catch (error) {
                 console.error('Failed to load template HTML:', error);
@@ -205,10 +213,9 @@ class InvoiceGenerator {
         
         // Update default tax rate if set
         if (this.config.invoice && this.config.invoice.defaultTaxRate) {
-            const taxRateInput = document.getElementById('taxRate');
-            if (taxRateInput && taxRateInput.value === '20') {
-                taxRateInput.value = this.config.invoice.defaultTaxRate;
-                this.settings.taxRate = this.config.invoice.defaultTaxRate;
+            if (this.settings.taxes.length > 0 && this.settings.taxes[0].rate === 20) {
+                this.settings.taxes[0].rate = this.config.invoice.defaultTaxRate;
+                this.renderTaxes();
             }
         }
         
@@ -401,7 +408,9 @@ class InvoiceGenerator {
             importBtn: document.getElementById('importBtn'),
             importInput: document.getElementById('importInput'),
             saveBtn: document.getElementById('saveBtn'),
-            taxRateInput: document.getElementById('taxRate'),
+            taxesContainer: document.getElementById('taxesContainer'),
+            addTaxBtn: document.getElementById('addTaxBtn'),
+            templateSelect: document.getElementById('templateSelect'),
             discountInput: document.getElementById('discount'),
             discountTypeSelect: document.getElementById('discountType'),
             previewDate: document.getElementById('previewDate'),
@@ -481,16 +490,22 @@ class InvoiceGenerator {
                     window.translationManager.setLanguage(e.target.value);
                     this.applyTranslations();
                     this.renderItems();
+                    this.renderTaxes();
                     this.updatePreview();
                 }
             });
         }
         
-        this.elements.taxRateInput?.addEventListener('input', (e) => {
-            this.settings.taxRate = parseFloat(e.target.value) || 0;
-            this.updatePreview();
-        });
+        this.elements.addTaxBtn?.addEventListener('click', () => this.addTax());
         
+        this.elements.templateSelect?.addEventListener('change', (e) => {
+            if (!this.config.template) {
+                this.config.template = {};
+            }
+            this.config.template.name = e.target.value;
+            this.applyTemplate();
+        });
+
         this.elements.discountInput?.addEventListener('input', (e) => {
             this.settings.discount = parseFloat(e.target.value) || 0;
             this.updatePreview();
@@ -643,8 +658,104 @@ class InvoiceGenerator {
         });
     }
 
+    addTax() {
+        const newTax = {
+            id: Date.now(),
+            name: 'KDV',
+            rate: 20
+        };
+        this.settings.taxes.push(newTax);
+        this.renderTaxes();
+        this.updatePreview();
+    }
+
+    removeTax(id) {
+        this.settings.taxes = this.settings.taxes.filter(tax => tax.id !== id);
+        this.renderTaxes();
+        this.updatePreview();
+    }
+
+    updateTax(id, field, value) {
+        const tax = this.settings.taxes.find(t => t.id === id);
+        if (!tax) return;
+
+        if (field === 'rate') {
+            tax.rate = parseFloat(value) || 0;
+        } else {
+            tax.name = this.sanitizeInput(value);
+        }
+        this.updatePreview();
+    }
+
+    renderTaxes() {
+        if (!this.elements.taxesContainer) return;
+        
+        this.elements.taxesContainer.innerHTML = '';
+        
+        this.settings.taxes.forEach((tax, index) => {
+            const row = document.createElement('div');
+            row.className = 'tax-row';
+            row.style.display = 'flex';
+            row.style.gap = '10px';
+            row.style.alignItems = 'flex-end';
+            row.setAttribute('data-tax-id', tax.id);
+            
+            const nameGroup = document.createElement('div');
+            nameGroup.className = 'form-group';
+            nameGroup.style.flex = '1';
+            const nameLabel = document.createElement('label');
+            nameLabel.textContent = this.t('ui.taxName');
+            nameLabel.style.fontSize = '0.75rem';
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.value = tax.name;
+            nameInput.placeholder = this.t('ui.taxName');
+            nameInput.addEventListener('input', (e) => this.updateTax(tax.id, 'name', e.target.value));
+            nameGroup.appendChild(nameLabel);
+            nameGroup.appendChild(nameInput);
+            
+            const rateGroup = document.createElement('div');
+            rateGroup.className = 'form-group';
+            rateGroup.style.width = '80px';
+            const rateLabel = document.createElement('label');
+            rateLabel.textContent = '%';
+            rateLabel.style.fontSize = '0.75rem';
+            const rateInput = document.createElement('input');
+            rateInput.type = 'number';
+            rateInput.min = '0';
+            rateInput.step = '0.1';
+            rateInput.value = tax.rate;
+            rateInput.addEventListener('input', (e) => this.updateTax(tax.id, 'rate', e.target.value));
+            rateGroup.appendChild(rateLabel);
+            rateGroup.appendChild(rateInput);
+            
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'btn-remove';
+            removeBtn.textContent = '×';
+            removeBtn.style.height = '38px';
+            removeBtn.style.marginBottom = '2px';
+            removeBtn.addEventListener('click', () => this.removeTax(tax.id));
+            
+            row.appendChild(nameGroup);
+            row.appendChild(rateGroup);
+            row.appendChild(removeBtn);
+            
+            this.elements.taxesContainer.appendChild(row);
+        });
+    }
+
     formatCurrency(amount) {
         const currency = document.getElementById('currency')?.value || 'TRY';
+        
+        if (currency === 'EUR') {
+            const number = new Intl.NumberFormat('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+            return `${number} €`;
+        }
+
         const locale = currency === 'TRY' ? 'tr-TR' : 'en-US';
         
         try {
@@ -798,8 +909,22 @@ class InvoiceGenerator {
             const subtotalAfterDiscount = Math.max(0, subtotal - discountAmount);
 
             // Calculate tax
-            const tax = subtotalAfterDiscount * (this.settings.taxRate / 100);
-            const grandTotal = subtotalAfterDiscount + tax;
+            let totalTax = 0;
+            const taxDetails = [];
+            
+            if (this.settings.taxes && Array.isArray(this.settings.taxes)) {
+                this.settings.taxes.forEach(taxItem => {
+                    const taxAmount = subtotalAfterDiscount * (taxItem.rate / 100);
+                    totalTax += taxAmount;
+                    taxDetails.push({
+                        name: taxItem.name,
+                        rate: taxItem.rate,
+                        amount: taxAmount
+                    });
+                });
+            }
+
+            const grandTotal = subtotalAfterDiscount + totalTax;
 
             // Update totals display
             if (this.elements.previewSubtotal) {
@@ -815,10 +940,42 @@ class InvoiceGenerator {
                 previewDiscount.textContent = discountAmount > 0 ? this.formatCurrency(discountAmount) : this.formatCurrency(0);
             }
             
-            // Update tax label
-            const taxLabel = document.getElementById('taxLabel');
-            if (taxLabel) {
-                taxLabel.textContent = this.t('invoice.tax', { rate: this.settings.taxRate });
+            // Update tax rows
+            const totalsTable = document.querySelector('.totals-table tbody') || document.querySelector('.totals-table');
+            if (totalsTable) {
+                // Remove old dynamic tax rows
+                const oldTaxRows = totalsTable.querySelectorAll('.tax-row-dynamic');
+                oldTaxRows.forEach(row => row.remove());
+                
+                // Remove static tax row if exists
+                const staticTaxLabel = document.getElementById('taxLabel');
+                if (staticTaxLabel) {
+                    const row = staticTaxLabel.closest('tr');
+                    if (row) row.remove();
+                }
+                
+                // Find insertion point (before grand total)
+                const grandTotalRow = totalsTable.querySelector('.grand-total-row');
+                
+                taxDetails.forEach(tax => {
+                    const row = document.createElement('tr');
+                    row.className = 'tax-row-dynamic';
+                    
+                    const th = document.createElement('th');
+                    th.textContent = `${tax.name} (%${tax.rate})`;
+                    
+                    const td = document.createElement('td');
+                    td.textContent = this.formatCurrency(tax.amount);
+                    
+                    row.appendChild(th);
+                    row.appendChild(td);
+                    
+                    if (grandTotalRow) {
+                        totalsTable.insertBefore(row, grandTotalRow);
+                    } else {
+                        totalsTable.appendChild(row);
+                    }
+                });
             }
             
             // Update other invoice labels
@@ -852,9 +1009,7 @@ class InvoiceGenerator {
             if (sayinLabel) {
                 sayinLabel.textContent = this.t('invoice.to');
             }
-            if (this.elements.previewTax) {
-                this.elements.previewTax.textContent = this.formatCurrency(tax);
-            }
+            
             if (this.elements.previewTotal) {
                 this.elements.previewTotal.textContent = this.formatCurrency(grandTotal);
             }
@@ -932,7 +1087,17 @@ class InvoiceGenerator {
             if (saved) {
                 const data = JSON.parse(saved);
                 this.items = data.items || [{ id: Date.now(), description: '', qty: 1, price: 0 }];
-                this.settings = data.settings || { taxRate: 20, discount: 0, discountType: 'percent' };
+                
+                this.settings = data.settings || { taxes: [{ id: Date.now(), name: 'KDV', rate: 20 }], discount: 0, discountType: 'percent' };
+                
+                // Migration for legacy data (single taxRate)
+                if (this.settings.taxRate !== undefined) {
+                    this.settings.taxes = [{ id: Date.now(), name: 'KDV', rate: this.settings.taxRate }];
+                    delete this.settings.taxRate;
+                }
+                if (!this.settings.taxes) {
+                    this.settings.taxes = [{ id: Date.now(), name: 'KDV', rate: 20 }];
+                }
                 
                 // Load form values
                 if (data.formData) {
@@ -945,9 +1110,8 @@ class InvoiceGenerator {
                 }
                 
                 // Load settings
-                if (this.elements.taxRateInput) {
-                    this.elements.taxRateInput.value = this.settings.taxRate;
-                }
+                this.renderTaxes();
+                
                 if (this.elements.discountInput) {
                     this.elements.discountInput.value = this.settings.discount;
                 }
@@ -956,10 +1120,12 @@ class InvoiceGenerator {
                 }
             } else {
                 this.items = [{ id: Date.now(), description: '3D Tarama Hizmeti - Motor Parçası', qty: 1, price: 1500.00 }];
+                this.renderTaxes();
             }
         } catch (error) {
             console.error('Load error:', error);
             this.items = [{ id: Date.now(), description: '', qty: 1, price: 0 }];
+            this.renderTaxes();
         }
     }
 
@@ -1019,9 +1185,15 @@ class InvoiceGenerator {
                 }
                 if (data.settings) {
                     this.settings = { ...this.settings, ...data.settings };
-                    if (this.elements.taxRateInput) {
-                        this.elements.taxRateInput.value = this.settings.taxRate;
+                    
+                    // Migration for legacy data
+                    if (this.settings.taxRate !== undefined) {
+                        this.settings.taxes = [{ id: Date.now(), name: 'KDV', rate: this.settings.taxRate }];
+                        delete this.settings.taxRate;
                     }
+                    
+                    this.renderTaxes();
+
                     if (this.elements.discountInput) {
                         this.elements.discountInput.value = this.settings.discount;
                     }
