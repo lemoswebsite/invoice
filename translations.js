@@ -13,7 +13,7 @@ class TranslationManager {
         this.fallbackLanguage = 'en';
     }
 
-    async loadTranslations() {
+    async loadTranslations(defaultLang = null) {
         try {
             const response = await fetch('translations.json');
             this.translations = await response.json();
@@ -22,6 +22,8 @@ class TranslationManager {
             const savedLang = localStorage.getItem('violite_language');
             if (savedLang && this.translations[savedLang]) {
                 this.currentLanguage = savedLang;
+            } else if (defaultLang && this.translations[defaultLang]) {
+                this.currentLanguage = defaultLang;
             } else {
                 // Detect browser language
                 const browserLang = navigator.language.split('-')[0];
@@ -90,4 +92,3 @@ class TranslationManager {
 
 // Global translation manager instance
 window.translationManager = new TranslationManager();
-
