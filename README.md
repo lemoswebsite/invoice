@@ -1,10 +1,10 @@
-# InvioLite - Professional Invoice Generator
+# Orega - Generador de factura profesional
 
-A modern, professional invoice generator built with vanilla JavaScript. Perfect for creating beautiful invoices, quotes, and proforma invoices for your business.
+Un generador de facturas moderno y profesional, desarrollado con JavaScript básico. Perfecto para crear facturas, presupuestos y facturas proforma atractivas para su negocio.
 
-## ✨ Features
+## ✨ Características
 
-### Core Features
+### Características principales
 - **Live Preview** - See your invoice update in real-time as you type
 - **Multiple Document Types** - Create invoices, proforma invoices, and quotes
 - **Multi-Currency Support** - Support for TRY, USD, EUR, GBP
