@@ -833,8 +833,8 @@
   },
   "es": {
     "app": {
-      "title": "InvioLite - Generador de Facturas Profesional",
-      "description": "InvioLite - Generador profesional de facturas, cotizaciones y facturas proforma. Gestión potente de facturas con exportación PDF y respaldo de datos."
+      "title": "Orega - Generador de Facturas Profesional",
+      "description": "Orega - Generador profesional de facturas, cotizaciones y facturas proforma. Gestión potente de facturas con exportación PDF y respaldo de datos."
     },
     "ui": {
       "documentDetails": "Detalles del Documento",
@@ -883,10 +883,10 @@
       "discount": "DESCUENTO",
       "tax": "IVA ({rate}%)",
       "grandTotal": "TOTAL",
-      "defaultDescription": "Descripción del Servicio / Producto",
+      "defaultDescription": "Descripción del Producto",
       "defaultCustomer": "Empresa Cliente S.A.",
       "defaultAddress": "Calle Ejemplo Centro de Negocios N°1, Ciudad",
-      "defaultPhone": "+34 555 000 0000"
+      "defaultPhone": "+1 809 000 0000"
     },
     "documentTypes": {
       "FATURA": "Factura",
