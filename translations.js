@@ -9,8 +9,8 @@
 class TranslationManager {
     constructor() {
         this.translations = {};
-        this.currentLanguage = 'tr';
-        this.fallbackLanguage = 'en';
+        this.currentLanguage = 'es';
+        this.fallbackLanguage = 'es';
     }
 
     async loadTranslations(defaultLang = null) {
