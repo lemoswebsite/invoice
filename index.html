@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="InvioLite - Profesyonel fatura, teklif ve proforma fatura oluşturucu. PDF export ve veri yedekleme özellikleri ile güçlü fatura yönetimi.">
-    <title>InvioLite - Profesyonel Fatura Oluşturucu</title>
+    <title>Factura - Orega Suplementos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
@@ -26,6 +26,9 @@
                         <option value="it">Italiano</option>
                         <option value="bg">Български</option>
                         <option value="ru">Русский</option>
+                        <option value="pt">Português</option>
+                        <option value="fr">Français</option>
+                        <option value="es">Español</option>
                     </select>
                 </div>
             </header>
@@ -41,6 +44,16 @@
                                 <option value="FATURA">Fatura</option>
                                 <option value="PROFORMA FATURA">Proforma Fatura</option>
                                 <option value="TEKLİF">Teklif</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="templateSelect" data-translate="ui.template">Şablon</label>
+                            <select id="templateSelect" name="templateSelect">
+                                <option value="template-1">Template 1</option>
+                                <option value="template-2">Template 2</option>
+                                <option value="template-3">Template 3</option>
+                                <option value="template-4">Template 4</option>
+                                <option value="template-5">Template 5</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -99,9 +112,10 @@
                     <section class="form-section">
                         <h2 data-translate="ui.pricing">Fiyatlandırma</h2>
                         <div class="form-grid">
-                            <div class="form-group">
-                                <label for="taxRate" data-translate="ui.taxRate">KDV Oranı (%)</label>
-                                <input type="number" id="taxRate" name="taxRate" min="0" max="100" step="0.1" value="20">
+                            <div class="form-group full-width" style="grid-column: 1 / -1;">
+                                <label data-translate="ui.taxes">Vergiler</label>
+                                <div id="taxesContainer" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                                <button type="button" id="addTaxBtn" class="btn-secondary btn-sm" style="margin-top: 0.5rem;" data-translate="ui.addTax">+ Vergi Ekle</button>
                             </div>
                             <div class="form-group">
                                 <label for="discountType" data-translate="ui.discountType">İndirim Tipi</label>
